@@ -1,0 +1,5 @@
+TODO
+ - README
+ - add dynamic add/delete server
+ - respond to add/delete on ZMQ
+

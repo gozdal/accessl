@@ -1,0 +1,16 @@
+PROJECT (accessl-engine)
+
+FIND_PACKAGE(OpenSSL REQUIRED)
+
+SET(OPENSSL_LIB_SOURCE e_accessl.c e_accessl_err.c)
+
+INCLUDE_DIRECTORIES(
+    ${OPENSSL_INCLUDE_DIR}
+)
+ADD_LIBRARY(accessl SHARED ${OPENSSL_LIB_SOURCE})
+TARGET_LINK_LIBRARIES(accessl dl ${OPENSSL_CRYPTO_LIBRARIES})
+
+INSTALL(TARGETS
+    accessl
+    LIBRARY DESTINATION lib/x86_64-linux-gnu/openssl-1.0.0/engines
+)

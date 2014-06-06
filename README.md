@@ -83,7 +83,7 @@ Using Ubuntu 14.04 as base platform:
 
   ```
   ssl_certificate server.crt;
-	ssl_certificate_key server.stubkey;
+  ssl_certificate_key server.stubkey;
   ```
 
 * restart nginx

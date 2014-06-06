@@ -79,6 +79,12 @@ Using Ubuntu 14.04 as base platform:
   ```
   to `/etc/nginx/nginx.conf` in global section (outside any `{}`)
 
+* configure nginx site to use certificate and stubkey
+
+  ```
+  ssl_certificate server.crt;
+	ssl_certificate_key server.stubkey;
+  ```
 
 * restart nginx
 
@@ -94,7 +100,7 @@ Linux 64-bit. Currently tested only on Ubuntu 14.04. Should be able to compile o
 TODO
 ----
 
-Quite a lot actually. See Issues to see what is currently pending.
+Quite a lot actually.
 
 License
 -------

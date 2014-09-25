@@ -26,7 +26,9 @@
 
 int main(int argc, char **argv)
 {
-    RSA *rsa = RSA_new();
+    X509 *x509 = X509_new();
+    EVP_PKEY *pkey;
+    RSA *rsa;
     FILE *f;
 
     if (argc < 3)
@@ -36,7 +38,17 @@ int main(int argc, char **argv)
     }
 
     f = fopen(argv[1], "rb");
-    rsa = PEM_read_RSA_PUBKEY(f, &rsa, NULL, NULL);
+    x509 = PEM_read_X509(f, &x509, NULL, NULL);
+    if (x509 == NULL) {
+        printf("Error loading certificate\n");
+        return 1;
+    }
+    pkey = X509_get_pubkey(x509);
+    if (pkey->type != EVP_PKEY_RSA) {
+        printf("Not an RSA key\n");
+        return 1;
+    }
+    rsa = EVP_PKEY_get1_RSA(pkey);
     fclose(f);
 
     BN_dec2bn(&rsa->d, "0");

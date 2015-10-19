@@ -8,7 +8,7 @@ RUN apt-get -q update && \
         liblog4c3 libgoogle-glog0 libboost-thread1.55.0 libboost-program-options1.55.0 libboost-random1.55.0 libzmq3 && \
     cd /accessl && \
     ./scripts/build-prepare.sh && \
-    make -C Build/Release -j8 && \
+    make -C Build/Release -j$(awk '/^processor/{n+=1}END{print n}' /proc/cpuinfo) && \
     make -C Build/Release install && \
     cd .. && \
     rm -rf accessl && \

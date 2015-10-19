@@ -97,6 +97,20 @@ Supported platforms
 
 Linux 64-bit. Currently tested only on Ubuntu 14.04. Should be able to compile on Mac OS X 10.9
 
+Docker
+-------------------
+The included Dockerfile runs a single worker on port 10000. To add more workers you would simply run more instances of the image.
+Example of use. Simply place server.key in the current directory and ensure it is readable by userid 65534 or group 65534, these ID's correspond to the debian jessie nobody/nogroup user/group.
+Then run:
+
+```
+docker run -d -v `pwd`:/keys:ro jacobalberty/accessl -k /keys/server.key
+```
+
+This will give you a container ready to link to whatever container you want.
+
+Please note the jacobalberty/accessl image is not from or supported by gozdal in any way.
+
 TODO
 ----
 
